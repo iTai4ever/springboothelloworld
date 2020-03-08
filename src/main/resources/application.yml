@@ -1,0 +1,15 @@
+mybatis:
+  type-aliases-package: com.sdulwq.pojo
+  mapper-locations: classpath:Mappers/*.xml
+
+mapper:
+  mappers:
+    - com.sdulwq.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

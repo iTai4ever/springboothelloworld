@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdulwq.dao.DeptlimitInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdulwq.pojo.DeptlimitInfo" >
+    <constructor >
+      <arg column="RECORDID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ORGAN_CODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ORGAN_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LIMITCNT" jdbcType="DOUBLE" javaType="java.lang.Double" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.sdulwq.pojo.DeptlimitInfo" >
+    insert into deptlimit_info (RECORDID, ORGAN_CODE, ORGAN_NAME, 
+      LIMITCNT)
+    values (#{recordid,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, #{organName,jdbcType=VARCHAR}, 
+      #{limitcnt,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdulwq.pojo.DeptlimitInfo" >
+    insert into deptlimit_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        RECORDID,
+      </if>
+      <if test="organCode != null" >
+        ORGAN_CODE,
+      </if>
+      <if test="organName != null" >
+        ORGAN_NAME,
+      </if>
+      <if test="limitcnt != null" >
+        LIMITCNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        #{recordid,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null" >
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null" >
+        #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="limitcnt != null" >
+        #{limitcnt,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

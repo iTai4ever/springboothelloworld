@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdulwq.dao.FeedInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdulwq.pojo.FeedInfo" >
+    <constructor >
+      <idArg column="FEEDCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FEEDNAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MIDFEEDCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ADVFEEDCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMMENTS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FEEDLEVEL" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FILLTYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FEEDBRAND" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PRONAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PRICE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="WARRANTY" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FEEDCODE, FEEDNAME, MIDFEEDCODE, ADVFEEDCODE, COMMENTS, FEEDLEVEL, FILLTYPE, FEEDBRAND, 
+    PRONAME, PRICE, WARRANTY, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedinfo
+    where FEEDCODE = #{feedcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from feedinfo
+    where FEEDCODE = #{feedcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sdulwq.pojo.FeedInfo" >
+    insert into feedinfo (FEEDCODE, FEEDNAME, MIDFEEDCODE, 
+      ADVFEEDCODE, COMMENTS, FEEDLEVEL, 
+      FILLTYPE, FEEDBRAND, PRONAME, 
+      PRICE, WARRANTY, create_time, 
+      update_time)
+    values (#{feedcode,jdbcType=VARCHAR}, #{feedname,jdbcType=VARCHAR}, #{midfeedcode,jdbcType=VARCHAR}, 
+      #{advfeedcode,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, #{feedlevel,jdbcType=VARCHAR}, 
+      #{filltype,jdbcType=VARCHAR}, #{feedbrand,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{warranty,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdulwq.pojo.FeedInfo" >
+    insert into feedinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedcode != null" >
+        FEEDCODE,
+      </if>
+      <if test="feedname != null" >
+        FEEDNAME,
+      </if>
+      <if test="midfeedcode != null" >
+        MIDFEEDCODE,
+      </if>
+      <if test="advfeedcode != null" >
+        ADVFEEDCODE,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+      <if test="feedlevel != null" >
+        FEEDLEVEL,
+      </if>
+      <if test="filltype != null" >
+        FILLTYPE,
+      </if>
+      <if test="feedbrand != null" >
+        FEEDBRAND,
+      </if>
+      <if test="proname != null" >
+        PRONAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="warranty != null" >
+        WARRANTY,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedcode != null" >
+        #{feedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="feedname != null" >
+        #{feedname,jdbcType=VARCHAR},
+      </if>
+      <if test="midfeedcode != null" >
+        #{midfeedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="advfeedcode != null" >
+        #{advfeedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="feedlevel != null" >
+        #{feedlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="filltype != null" >
+        #{filltype,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbrand != null" >
+        #{feedbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="warranty != null" >
+        #{warranty,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdulwq.pojo.FeedInfo" >
+    update feedinfo
+    <set >
+      <if test="feedname != null" >
+        FEEDNAME = #{feedname,jdbcType=VARCHAR},
+      </if>
+      <if test="midfeedcode != null" >
+        MIDFEEDCODE = #{midfeedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="advfeedcode != null" >
+        ADVFEEDCODE = #{advfeedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="feedlevel != null" >
+        FEEDLEVEL = #{feedlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="filltype != null" >
+        FILLTYPE = #{filltype,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbrand != null" >
+        FEEDBRAND = #{feedbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        PRONAME = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="warranty != null" >
+        WARRANTY = #{warranty,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where FEEDCODE = #{feedcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdulwq.pojo.FeedInfo" >
+    update feedinfo
+    set FEEDNAME = #{feedname,jdbcType=VARCHAR},
+      MIDFEEDCODE = #{midfeedcode,jdbcType=VARCHAR},
+      ADVFEEDCODE = #{advfeedcode,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      FEEDLEVEL = #{feedlevel,jdbcType=VARCHAR},
+      FILLTYPE = #{filltype,jdbcType=VARCHAR},
+      FEEDBRAND = #{feedbrand,jdbcType=VARCHAR},
+      PRONAME = #{proname,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      WARRANTY = #{warranty,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where FEEDCODE = #{feedcode,jdbcType=VARCHAR}
+  </update>
+</mapper>

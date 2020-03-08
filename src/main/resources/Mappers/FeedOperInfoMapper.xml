@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdulwq.dao.FeedOperInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdulwq.pojo.FeedOperInfo" >
+    <constructor >
+      <arg column="FEEDCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FEEDCNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="OPERRECORDID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.sdulwq.pojo.FeedOperInfo" >
+    insert into feedoper_info (FEEDCODE, FEEDCNT, OPERRECORDID, 
+      create_time, update_time)
+    values (#{feedcode,jdbcType=VARCHAR}, #{feedcnt,jdbcType=INTEGER}, #{operrecordid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdulwq.pojo.FeedOperInfo" >
+    insert into feedoper_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedcode != null" >
+        FEEDCODE,
+      </if>
+      <if test="feedcnt != null" >
+        FEEDCNT,
+      </if>
+      <if test="operrecordid != null" >
+        OPERRECORDID,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedcode != null" >
+        #{feedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="feedcnt != null" >
+        #{feedcnt,jdbcType=INTEGER},
+      </if>
+      <if test="operrecordid != null" >
+        #{operrecordid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

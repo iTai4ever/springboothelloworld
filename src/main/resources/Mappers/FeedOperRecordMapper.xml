@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdulwq.dao.FeedOperRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.sdulwq.pojo.FeedOperRecord" >
+    <constructor >
+      <idArg column="RECORDID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OPERTYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OPERDATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="OPERUSER" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RECORDID, OPERTYPE, OPERDATE, OPERUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedoper_record
+    where RECORDID = #{recordid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from feedoper_record
+    where RECORDID = #{recordid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sdulwq.pojo.FeedOperRecord" >
+    insert into feedoper_record (RECORDID, OPERTYPE, OPERDATE, 
+      OPERUSER)
+    values (#{recordid,jdbcType=VARCHAR}, #{opertype,jdbcType=VARCHAR}, #{operdate,jdbcType=TIMESTAMP}, 
+      #{operuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdulwq.pojo.FeedOperRecord" >
+    insert into feedoper_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        RECORDID,
+      </if>
+      <if test="opertype != null" >
+        OPERTYPE,
+      </if>
+      <if test="operdate != null" >
+        OPERDATE,
+      </if>
+      <if test="operuser != null" >
+        OPERUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        #{recordid,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null" >
+        #{opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="operdate != null" >
+        #{operdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operuser != null" >
+        #{operuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdulwq.pojo.FeedOperRecord" >
+    update feedoper_record
+    <set >
+      <if test="opertype != null" >
+        OPERTYPE = #{opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="operdate != null" >
+        OPERDATE = #{operdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operuser != null" >
+        OPERUSER = #{operuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RECORDID = #{recordid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdulwq.pojo.FeedOperRecord" >
+    update feedoper_record
+    set OPERTYPE = #{opertype,jdbcType=VARCHAR},
+      OPERDATE = #{operdate,jdbcType=TIMESTAMP},
+      OPERUSER = #{operuser,jdbcType=VARCHAR}
+    where RECORDID = #{recordid,jdbcType=VARCHAR}
+  </update>
+</mapper>

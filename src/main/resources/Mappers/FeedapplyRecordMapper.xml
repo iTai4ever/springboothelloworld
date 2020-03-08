@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdulwq.dao.FeedapplyRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.sdulwq.pojo.FeedapplyRecord" >
+    <constructor >
+      <idArg column="APPLYCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RECORDID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="APPLYDATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="APPLYUSER" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="APPLYCAUSE" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLYCODE, RECORDID, APPLYDATE, APPLYUSER, APPLYCAUSE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedapply_record
+    where APPLYCODE = #{applycode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from feedapply_record
+    where APPLYCODE = #{applycode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sdulwq.pojo.FeedapplyRecord" >
+    insert into feedapply_record (APPLYCODE, RECORDID, APPLYDATE, 
+      APPLYUSER, APPLYCAUSE)
+    values (#{applycode,jdbcType=VARCHAR}, #{recordid,jdbcType=VARCHAR}, #{applydate,jdbcType=TIMESTAMP}, 
+      #{applyuser,jdbcType=VARCHAR}, #{applycause,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdulwq.pojo.FeedapplyRecord" >
+    insert into feedapply_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applycode != null" >
+        APPLYCODE,
+      </if>
+      <if test="recordid != null" >
+        RECORDID,
+      </if>
+      <if test="applydate != null" >
+        APPLYDATE,
+      </if>
+      <if test="applyuser != null" >
+        APPLYUSER,
+      </if>
+      <if test="applycause != null" >
+        APPLYCAUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applycode != null" >
+        #{applycode,jdbcType=VARCHAR},
+      </if>
+      <if test="recordid != null" >
+        #{recordid,jdbcType=VARCHAR},
+      </if>
+      <if test="applydate != null" >
+        #{applydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyuser != null" >
+        #{applyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="applycause != null" >
+        #{applycause,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdulwq.pojo.FeedapplyRecord" >
+    update feedapply_record
+    <set >
+      <if test="recordid != null" >
+        RECORDID = #{recordid,jdbcType=VARCHAR},
+      </if>
+      <if test="applydate != null" >
+        APPLYDATE = #{applydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyuser != null" >
+        APPLYUSER = #{applyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="applycause != null" >
+        APPLYCAUSE = #{applycause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLYCODE = #{applycode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdulwq.pojo.FeedapplyRecord" >
+    update feedapply_record
+    set RECORDID = #{recordid,jdbcType=VARCHAR},
+      APPLYDATE = #{applydate,jdbcType=TIMESTAMP},
+      APPLYUSER = #{applyuser,jdbcType=VARCHAR},
+      APPLYCAUSE = #{applycause,jdbcType=VARCHAR}
+    where APPLYCODE = #{applycode,jdbcType=VARCHAR}
+  </update>
+</mapper>
