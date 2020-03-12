@@ -1,6 +1,8 @@
 package com.sdulwq.dao;
 
 import com.sdulwq.pojo.UserInfo;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(String userId);
@@ -14,4 +16,8 @@ public interface UserInfoMapper {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+
+    int checkUsername(String username);
+
+    UserInfo selectLogin(@Param("username") String username, @Param("password")String password);
 }

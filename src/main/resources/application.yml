@@ -1,12 +1,30 @@
-mybatis:
-  type-aliases-package: com.sdulwq.pojo
-  mapper-locations: classpath:Mappers/*.xml
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/low?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password:
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall
+    logSlowSql: true
 
-mapper:
-  mappers:
-    - com.sdulwq.util.MyMapper
-  not-empty: false
-  identity: MYSQL
+
+mybatis:
+  type-aliases-package: com.sdulwq.dao
+  mapper-locations: classpath:Mappers/*.xml
+  config-location: classpath:mybatis-config.xml
+
 
 pagehelper:
   helperDialect: mysql
