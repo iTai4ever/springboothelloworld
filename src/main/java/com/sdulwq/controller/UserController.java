@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
     /**
-     *
+     *用户登录
      * @param username
      * @param password
      * @return
@@ -36,5 +36,28 @@ public class UserController {
             session.setAttribute(Const.CURRENT_USER,reponse.getData());
         }
         return reponse;
+    }
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "logout.do",method = RequestMethod.GET)
+    @ResponseBody
+    public  ServerReponse<String> logout(HttpSession session){
+        session.removeAttribute(Const.CURRENT_USER);
+        return ServerReponse.createBySuccess();
+    }
+
+    /**
+     * 注册
+     * @param userInfo
+     * @return
+     */
+    @RequestMapping(value = "register.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerReponse<String> register(UserInfo userInfo){
+        return iUserService.register(userInfo);
     }
 }
